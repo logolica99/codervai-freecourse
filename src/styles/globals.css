@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.her {
+  background: var(
+    --purple-1,
+    linear-gradient(
+      180deg,
+      rgba(214, 187, 251, 0.07) 0%,
+      rgba(255, 255, 255, 0) 100%
+    )
+  );
+}
+
+button.rec-dot {
+  display: none;
+}
+
+/* the slides */
+.slick-list {
+  margin: 0 -13px;
+}
+.slick-slide > div {
+  padding: 0 13px;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+@keyframes scaleAnimation {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+}
+
+.animated-image{
+  animation: scaleAnimation 3s infinite;
+}
+
+.customScrollbar::-webkit-scrollbar {
+  width: 6px; /* Adjust the scrollbar width as needed */
+}
+.customScrollbar::-webkit-scrollbar-thumb {
+  background-color: #4d2a5b; /* Color of the thumb */
+  border-radius: 5px; /* Rounded corners for the thumb */
+}
+
+.customScrollbar::-webkit-scrollbar-track {
+  background: #FFF;
+}
+
+
+.darkCustomScrollbar::-webkit-scrollbar {
+  width: 6px; /* Adjust the scrollbar width as needed */
+}
+.darkCustomScrollbar::-webkit-scrollbar-thumb {
+  background-color: #4d2a5b; /* Color of the thumb */
+  border-radius: 5px; /* Rounded corners for the thumb */
+}
+
+.darkCustomScrollbar::-webkit-scrollbar-track {
+  background: #0B060D;
+}
+
+
+
