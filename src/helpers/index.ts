@@ -48,7 +48,10 @@ export const isLoggedIn = () => {
     // Perform localStorage action
 
     token = getCookie("token");
-    localStorage.setItem("token", token);
+    if(token){
+
+      localStorage.setItem("token", token);
+    }
   }
 
   if (!token || !checkTokenValidity(token)) {
