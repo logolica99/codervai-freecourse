@@ -1,5 +1,5 @@
 import localFont from "next/font/local";
-import jwtDecode from "jwt-decode"
+import { jwtDecode } from "jwt-decode";
 import CryptoJS from "crypto-js";
 
 export const HindSiliguri = localFont({
@@ -48,7 +48,7 @@ export const isLoggedIn = () => {
     // Perform localStorage action
 
     token = getCookie("token");
-    localStorage.setItem("token",token)
+    localStorage.setItem("token", token);
   }
 
   if (!token || !checkTokenValidity(token)) {
@@ -56,9 +56,21 @@ export const isLoggedIn = () => {
   }
   return true;
 };
+function deleteCookie(name: string) {
+  document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+}
+function deleteCookieWithDomain(name: string, domain: string) {
+  document.cookie =
+    name +
+    "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; domain=" +
+    domain +
+    "; path=/;";
+}
 
 export const logout = () => {
   localStorage.removeItem("token");
+  deleteCookie("token");
+  deleteCookieWithDomain("token", "codervai.com");
   window.location.reload();
 };
 
