@@ -1377,13 +1377,8 @@ export default function CourseDetailsPage() {
             </div>
             <div style={{ flex: 1 }}>
               <div className="p-4  text-heading dark:text-darkHeading bg-gray-400/30 dark:bg-gray-100/5 backdrop-blur-xl rounded-xl rounded-b-none  ">
-                <iframe
-                  className="rounded-xl w-full min-h-[200px] lg:min-h-[260px]"
-                  src={courseData.intro_video}
-                  title="How do we scale web applications?"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen
-                ></iframe>
+               
+                <img src="/Intro to Programming (Presentation) main.png" alt=""   className="rounded-xl w-full min-h-[200px] lg:min-h-[260px]"/>
                 <div className="flex flex-col lg:flex-row lg:items-center gap-4 md:gap-2 justify-between py-8 border-b border-gray-300/20">
                   <div className="flex items-center gap-4">
                     <p className="text-purple line-through font-semibold text-lg">
