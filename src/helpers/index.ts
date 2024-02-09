@@ -1,16 +1,54 @@
-import jwtDecode from "jwt-decode";
-import CryptoJS from "crypto-js";
 import localFont from "next/font/local";
+import jwtDecode from "jwt-decode"
+import CryptoJS from "crypto-js";
 
+export const HindSiliguri = localFont({
+  src: [
+    {
+      path: "../pages/fonts/Hind_Siliguri/HindSiliguri-Bold.ttf",
+      weight: "700",
+    },
+    {
+      path: "../pages/fonts/Hind_Siliguri/HindSiliguri-Light.ttf",
+      weight: "300",
+    },
+    {
+      path: "../pages/fonts/Hind_Siliguri/HindSiliguri-Regular.ttf",
+      weight: "400",
+    },
+    {
+      path: "../pages/fonts/Hind_Siliguri/HindSiliguri-SemiBold.ttf",
+      weight: "600",
+    },
+    {
+      path: "../pages/fonts/Hind_Siliguri/HindSiliguri-Medium.ttf",
+      weight: "500",
+    },
+  ],
+  variable: "--font-HindSiliguri",
+});
 export const checkTokenValidity = (token: any) => {
   return jwtDecode<any>(token).name.length > 0 ? true : false;
 };
 
+function getCookie(name: string) {
+  const cookies = document.cookie.split(";");
+  for (let i = 0; i < cookies.length; i++) {
+    const cookie = cookies[i].trim();
+    if (cookie.startsWith(name + "=")) {
+      return decodeURIComponent(cookie.substring(name.length + 1));
+    }
+  }
+  return null;
+}
+
 export const isLoggedIn = () => {
-  let token: string = "";
+  let token: any = "";
   if (typeof window !== "undefined") {
     // Perform localStorage action
-    token = localStorage.getItem("token") || "";
+
+    token = getCookie("token");
+    localStorage.setItem("token",token)
   }
 
   if (!token || !checkTokenValidity(token)) {
@@ -152,29 +190,3 @@ export function formatDate(inputDate: any) {
 
   return formattedDate;
 }
-
-export const HindSiliguri = localFont({
-  src: [
-    {
-      path: "../pages/fonts/Hind_Siliguri/HindSiliguri-Bold.ttf",
-      weight: "700",
-    },
-    {
-      path: "../pages/fonts/Hind_Siliguri/HindSiliguri-Light.ttf",
-      weight: "300",
-    },
-    {
-      path: "../pages/fonts/Hind_Siliguri/HindSiliguri-Regular.ttf",
-      weight: "400",
-    },
-    {
-      path: "../pages/fonts/Hind_Siliguri/HindSiliguri-SemiBold.ttf",
-      weight: "600",
-    },
-    {
-      path: "../pages/fonts/Hind_Siliguri/HindSiliguri-Medium.ttf",
-      weight: "500",
-    },
-  ],
-  variable: "--font-HindSiliguri",
-});
