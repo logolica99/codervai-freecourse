@@ -108,7 +108,14 @@ export default function Nav({}: Props) {
               <Link href="/">
                 <img src="/logo.png" alt="" className="w-8 md:w-14 mr-8 " />
               </Link>
-
+              {isLogged && (
+                <Link
+                  href="/course/12"
+                  className="hidden lg:block hover:text-black dark:hover:text-white ease-in-out duration-150"
+                >
+                  আপনার প্রোগ্রেস
+                </Link>
+              )}
               {/* {isLogged && (
                 <Link
                   href="/live-class"
@@ -158,7 +165,7 @@ export default function Nav({}: Props) {
                     // toggleTheme();
                   }}
                 />
-                {false ? (
+                {/* {false ? (
                   <Link href="/notifications" title="নোটিফিকেশানস">
                     {darkMode ? (
                       <svg
@@ -228,7 +235,7 @@ export default function Nav({}: Props) {
                       </svg>
                     )}
                   </Link>
-                )}
+                )} */}
 
                 <Link
                   href={"/profile/my-courses"}
@@ -338,12 +345,12 @@ export default function Nav({}: Props) {
                   লাইভ ক্লাস শিডিউল
                 </Link>
               )} */}
-              <Link
+              {/* <Link
                 href="/course-details/12"
                 className=" hover:text-black dark:hover:text-white ease-in-out duration-150"
               >
                 কোস কন্টেন্ট
-              </Link>
+              </Link> */}
               {/* {isLogged ? (
                 <Link
                   href="/course/12"
@@ -359,6 +366,15 @@ export default function Nav({}: Props) {
                   ফ্রি ট্রায়াল
                 </Link>
               )} */}
+
+              {isLogged && (
+                <Link
+                  href="/course/12"
+                  className=" hover:text-black dark:hover:text-white ease-in-out duration-150"
+                >
+                  আপনার প্রোগ্রেস
+                </Link>
+              )}
 
               {/* {isLogged && (
                 <Link
