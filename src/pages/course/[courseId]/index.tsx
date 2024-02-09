@@ -310,8 +310,7 @@ export default function CourseDetailsPage() {
   };
 
   useEffect(() => {
-    router.push("/course-details/12");
-    fetchCourse()
+    fetchCourse();
   }, []);
 
   useEffect(() => {
@@ -586,14 +585,20 @@ export default function CourseDetailsPage() {
               )}
 
               <div className="mt-8">
+                {/* <p>{activeModule?.title}</p> */}
                 {activeModule?.data?.category == "VIDEO" &&
                   activeModule?.data?.videoHost === "Youtube" && (
-                    <iframe
-                      className="rounded-xl w-full min-h-[260px]  md:min-h-[400px]  lg:min-h-[500px] "
-                      src={activeModule?.data?.videoUrl}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowFullScreen
-                    ></iframe>
+                   
+                        <iframe
+                          className="rounded-xl w-full min-h-[260px]  md:min-h-[400px]  lg:min-h-[500px] "
+                          src={
+                            activeModule?.data?.videoUrl +
+                            "?rel=0&amp;fs=0&amp;showinfo=0"
+                          }
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                          allowFullScreen
+                        ></iframe>
+                      
                   )}
                 {activeModule?.data?.category == "VIDEO" &&
                   activeModule?.data?.videoHost === "BunnyCDN" && (

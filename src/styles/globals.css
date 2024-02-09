@@ -68,3 +68,6 @@ button.rec-dot {
 
 
 
+.ytp-title-text:after{
+  display: none;
+}

@@ -293,7 +293,7 @@ export default function Nav({}: Props) {
                   }}
                 />
                 <a
-                  href="https://www.codervai.com/auth/login"
+                  href="https://www.codervai.com/auth/login?redirect=py.codervai.com"
                   className=" hidden lg:block hover:text-black dark:hover:text-white ease-in-out duration-150 text-sm md:text-base"
                 >
                   লগ ইন

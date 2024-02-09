@@ -26,6 +26,7 @@ import Footer from "@/components/Footer";
 import jwtDecode from "jwt-decode";
 import Button from "@/components/Button";
 import GradientButton from "@/components/GradientButton";
+import { ButtonBase } from "@mui/material";
 
 const settings = {
   dots: true,
@@ -262,6 +263,7 @@ export default function CourseDetailsPage() {
 
   const [openBuyCourse, setOpenBuyCourse] = useState(false);
   const [openPrebookCourse, setOpenPrebookCourse] = useState(false);
+  const [couponCode, setCouponCode] = useState("");
   const [prebookingData, setPrebookingData] = useState({
     name: "",
     email: "",
@@ -293,7 +295,7 @@ export default function CourseDetailsPage() {
 
   const buyCourse = () => {
     if (isLoggedIn() === false) {
-      toast.error("please sign in ");
+      window.location.href = "https://www.codervai.com/auth/login";
     } else {
       setUser({ ...user, loading: true });
       const token = localStorage.getItem("token");
@@ -1458,7 +1460,63 @@ export default function CourseDetailsPage() {
                     </div>
                   ))}
                 </div>
-                {/* {courseData.isTaken ? (
+                {isLoggedIn() && !courseData.isTaken && (
+                  <div className="mt-6">
+                    <p className="text-lg font-semibold mb-1">Enter Coupon</p>
+                    <div className="flex items-center gap-2">
+                      <input
+                        className="w-full px-3 py-3 rounded bg-gray-200   dark:bg-gray-200/20 outline-none focus:ring ring-gray-400/80 dark:ring-gray-300/80"
+                        placeholder=" Coupon Code"
+                        value={couponCode}
+                        onChange={(e) => {
+                          setCouponCode(e.target.value);
+                        }}
+                      />
+                      <Button
+                        callBackFunction={() => {
+                          setPrebookButtonLoading(true);
+
+                          const token = localStorage.getItem("token");
+                          axios
+                            .post(
+                              BACKEND_URL +
+                                "/user/course/applyCoupon/" +
+                                COURSE_ID,
+                              {
+                                coupon: couponCode,
+                              },
+                              {
+                                headers: {
+                                  Authorization: `Bearer ${token}`,
+                                },
+                              },
+                            )
+                            .then((res) => {
+                              setUser({ ...user, loading: false });
+
+                              setPrebookButtonLoading(false);
+
+                              toast.success(
+                                "You have sucessfully bought this course!",
+                              );
+                              setCourseData({ ...courseData, isTaken: true });
+                              // router.push("/course/12");
+                              //setUser({ ...user, loading: false });
+                            })
+                            .catch((err) => {
+                              setUser({ ...user, loading: false });
+                              toast.error("Wrong Coupon Code!");
+                              setPrebookButtonLoading(false);
+                            });
+                        }}
+                        loading={prebookButtonLoading}
+                        bgColor={"#1CAB55"}
+                        label="Apply"
+                      ></Button>
+                    </div>
+                  </div>
+                )}
+                {courseData.isTaken ? (
                   <Link
                     href="/course/12"
                     className=" flex justify-center text-darkHeading items-center bg-[#1CAB55] py-3 w-full mt-8 rounded-xl hover:bg-opacity-50 ease-in-out duration-150"
@@ -1468,14 +1526,19 @@ export default function CourseDetailsPage() {
                 ) : (
                   <button
                     onClick={() => {
-                      setOpenBuyCourse(true);
+                      if (isLoggedIn()) {
+                        setOpenBuyCourse(true);
+                      } else {
+                        window.location.href =
+                          "https://www.codervai.com/auth/login?redirect=py.codervai.com";
+                      }
                     }}
                     className="bg-[#1CAB55] text-darkHeading py-3 w-full mt-8 rounded-xl hover:bg-opacity-50 ease-in-out duration-150"
                   >
                     কোর্সটি কিনুন
                   </button>
-                )} */}
-                <button
+                )}
+                {/* <button
                   onClick={() => {
                     let token: any = "";
                     token = localStorage.getItem("token")
@@ -1495,7 +1558,7 @@ export default function CourseDetailsPage() {
                   className={`${courseData.isWishList ? "bg-gray-400 cursor-not-allowed" : "bg-[#1CAB55] hover:bg-opacity-50 ease-in-out duration-150 "} text-darkHeading py-3 w-full mt-8 rounded-xl font-bold`}
                 >
                   {courseData.isWishList ? "Prebooked" : "Prebook This Course"}
-                </button>
+                </button> */}
               </div>
               <div className="bg-gray-400/20 dark:bg-gray-300/10    flex items-center justify-between gap-8 py-3 px-4 lg:px-6 rounded-xl rounded-t-none">
                 <p className="text-sm text-paragraph dark:text-darkParagraph">
