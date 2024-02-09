@@ -1,5 +1,5 @@
 import localFont from "next/font/local";
-import { jwtDecode } from "jwt-decode";
+import  jwtDecode from "jwt-decode";
 import CryptoJS from "crypto-js";
 
 export const HindSiliguri = localFont({
