@@ -137,7 +137,7 @@ export default function CourseDetailsPage() {
       .then((res) => {
         setCourseData(res.data);
         if (res.data.maxModuleSerialProgress === 0) {
-          submitProgress(1);
+          submitProgress(res.data.chapters[0].modules[0].id);
         }
         res.data.chapters.forEach((chapter: any) => {
           chapter.modules.forEach((module: any) => {
@@ -190,9 +190,27 @@ export default function CourseDetailsPage() {
         },
       )
       .then((res) => {
-        fetchCourse();
+        axios
+          .get(BACKEND_URL + "/user/course/getfull/" + COURSE_ID, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          })
+          .then((res) => {
+            setCourseData(res.data);
+            if (res.data.maxModuleSerialProgress === 0) {
+              submitProgress(res.data.chapters[0].modules[0].id);
+            }
+
+            setUser({ ...user, loading: false });
+          })
+          .catch((err) => {
+            setUser({ ...user, loading: false });
+          });
       })
-      .catch((err) => {});
+      .catch((err) => {
+        setUser({ ...user, loading: false });
+      });
   };
 
   const submitQuiz = () => {
@@ -598,9 +616,7 @@ export default function CourseDetailsPage() {
                   activeModule?.data?.videoHost === "Youtube" && (
                     <iframe
                       className="rounded-xl w-full min-h-[260px]  md:min-h-[400px]  lg:min-h-[500px] "
-                      src={
-                        activeModule?.data?.videoUrl 
-                      }
+                      src={activeModule?.data?.videoUrl}
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                       allowFullScreen
                     ></iframe>
