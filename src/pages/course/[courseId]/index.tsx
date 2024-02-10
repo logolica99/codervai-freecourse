@@ -839,7 +839,18 @@ export default function CourseDetailsPage() {
                                   //   !(quizAnswer[index] == elem) &&
                                   //   showQuizAnswer
                                   // }
-                                  sx={{}}
+                                  sx={{
+                                    color:
+                                      showQuizAnswer &&
+                                      !quizVerdict[index] &&
+                                      elem === quizAnswer[index]
+                                        ? "red"
+                                        : showQuizAnswer &&
+                                            quizVerdict[index] &&
+                                            elem === quizAnswer[index]
+                                          ? "limegreen"
+                                          :""
+                                  }}
                                   control={
                                     <Radio
                                       sx={{
