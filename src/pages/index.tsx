@@ -1359,65 +1359,66 @@ export default function CourseDetailsPage() {
                     </div>
                   ))}
                 </div>
-                !courseData.isTaken && (
-                <div className="mt-6">
-                  <p className="text-lg font-semibold mb-1">Enter Coupon</p>
-                  <div className="flex items-center gap-2">
-                    <input
-                      className="w-full px-3 py-3 rounded bg-gray-200   dark:bg-gray-200/20 outline-none focus:ring ring-gray-400/80 dark:ring-gray-300/80"
-                      placeholder=" Coupon Code"
-                      value={couponCode}
-                      onChange={(e) => {
-                        setCouponCode(e.target.value);
-                      }}
-                    />
-                    <Button
-                      callBackFunction={() => {
-                        if (isLoggedIn()) {
-                          setPrebookButtonLoading(true);
+                {!courseData.isTaken && (
+                  <div className="mt-6">
+                    <p className="text-lg font-semibold mb-1">Enter Coupon</p>
+                    <div className="flex items-center gap-2">
+                      <input
+                        className="w-full px-3 py-3 rounded bg-gray-200   dark:bg-gray-200/20 outline-none focus:ring ring-gray-400/80 dark:ring-gray-300/80"
+                        placeholder=" Coupon Code"
+                        value={couponCode}
+                        onChange={(e) => {
+                          setCouponCode(e.target.value);
+                        }}
+                      />
+                      <Button
+                        callBackFunction={() => {
+                          if (isLoggedIn()) {
+                            setPrebookButtonLoading(true);
 
-                          const token = localStorage.getItem("token");
-                          axios
-                            .post(
-                              BACKEND_URL +
-                                "/user/course/applyCoupon/" +
-                                COURSE_ID,
-                              {
-                                coupon: couponCode,
-                              },
-                              {
-                                headers: {
-                                  Authorization: `Bearer ${token}`,
+                            const token = localStorage.getItem("token");
+                            axios
+                              .post(
+                                BACKEND_URL +
+                                  "/user/course/applyCoupon/" +
+                                  COURSE_ID,
+                                {
+                                  coupon: couponCode,
                                 },
-                              },
-                            )
-                            .then((res) => {
-                              setUser({ ...user, loading: false });
+                                {
+                                  headers: {
+                                    Authorization: `Bearer ${token}`,
+                                  },
+                                },
+                              )
+                              .then((res) => {
+                                setUser({ ...user, loading: false });
 
-                              setPrebookButtonLoading(false);
+                                setPrebookButtonLoading(false);
 
-                              toast.success(
-                                "You have sucessfully bought this course!",
-                              );
-                              setCourseData({ ...courseData, isTaken: true });
-                              // router.push("/course/12");
-                              //setUser({ ...user, loading: false });
-                            })
-                            .catch((err) => {
-                              setUser({ ...user, loading: false });
-                              toast.error("Wrong Coupon Code!");
-                              setPrebookButtonLoading(false);
-                            });
-                        } else {
-                          toast.error("Please login first!");
-                        }
-                      }}
-                      loading={prebookButtonLoading}
-                      bgColor={"#1CAB55"}
-                      label="Apply"
-                    ></Button>
+                                toast.success(
+                                  "You have sucessfully bought this course!",
+                                );
+                                setCourseData({ ...courseData, isTaken: true });
+                                // router.push("/course/12");
+                                //setUser({ ...user, loading: false });
+                              })
+                              .catch((err) => {
+                                setUser({ ...user, loading: false });
+                                toast.error("Wrong Coupon Code!");
+                                setPrebookButtonLoading(false);
+                              });
+                          } else {
+                            toast.error("Please login first!");
+                          }
+                        }}
+                        loading={prebookButtonLoading}
+                        bgColor={"#1CAB55"}
+                        label="Apply"
+                      ></Button>
+                    </div>
                   </div>
-                </div>
+                )}
                 {courseData.isTaken ? (
                   <Link
                     href="/course/12"
