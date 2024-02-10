@@ -504,7 +504,7 @@ export default function CourseDetailsPage() {
               viewBox="0 0 980 892"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className="absolute  -top-[70px] -left-[200px] h-full z-0"
+              className="absolute hidden -top-[70px] -left-[200px] h-full z-0"
             >
               <g filter="url(#filter0_f_261_7530)">
                 <ellipse
@@ -599,8 +599,7 @@ export default function CourseDetailsPage() {
                     <iframe
                       className="rounded-xl w-full min-h-[260px]  md:min-h-[400px]  lg:min-h-[500px] "
                       src={
-                        activeModule?.data?.videoUrl +
-                        "?rel=0&amp;fs=0&amp;showinfo=0"
+                        activeModule?.data?.videoUrl 
                       }
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                       allowFullScreen
