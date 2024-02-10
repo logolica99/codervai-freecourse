@@ -808,9 +808,12 @@ export default function CourseDetailsPage() {
                 {activeModule?.data?.category === "QUIZ" && (
                   <div>
                     {activeModule?.data?.quiz?.map((quiz: any, index: any) => (
-                      <div className="my-6" key={Math.random()}>
+                      <div
+                        className="my-6 bg-[#B153E0]/10 border border-[#B153E0] dark:bg-gray-300/10  rounded p-6"
+                        key={Math.random()}
+                      >
                         <div
-                          className="text-white"
+                          className="text-black dark:text-white forced-white font-bold"
                           dangerouslySetInnerHTML={{
                             __html: quiz.question,
                           }}
@@ -847,8 +850,8 @@ export default function CourseDetailsPage() {
                                                 elem === quizAnswer[index]
                                               ? "limgreen"
                                               : user.darkMode
-                                                ? "white"
-                                                : "black",
+                                                ? "#B153E0"
+                                                : "#B153E0",
                                         "&.Mui-checked": {
                                           color:
                                             showQuizAnswer &&
@@ -860,8 +863,8 @@ export default function CourseDetailsPage() {
                                                   elem === quizAnswer[index]
                                                 ? "limegreen"
                                                 : user.darkMode
-                                                  ? "white"
-                                                  : "black",
+                                                  ? "#B153E0"
+                                                  : "#B153E0",
                                         },
                                       }}
                                     />
