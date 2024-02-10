@@ -824,19 +824,22 @@ export default function CourseDetailsPage() {
                             <RadioGroup
                               value={quizAnswer[index]}
                               onChange={(e) => {
-                                let temp = quizAnswer;
-                                temp[index] = e.target.value;
-                                setQuizAnswer(temp);
+                                if (!showQuizAnswer) {
+                                  let temp = quizAnswer;
+                                  temp[index] = e.target.value;
+                                  setQuizAnswer(temp);
+                                }
                               }}
                             >
                               {quiz.options?.map((elem: any) => (
                                 <FormControlLabel
                                   key={Math.random()}
                                   value={elem}
-                                  disabled={
-                                    !(quizAnswer[index] == elem) &&
-                                    showQuizAnswer
-                                  }
+                                  // disabled={
+                                  //   !(quizAnswer[index] == elem) &&
+                                  //   showQuizAnswer
+                                  // }
+                                  sx={{}}
                                   control={
                                     <Radio
                                       sx={{
@@ -848,7 +851,7 @@ export default function CourseDetailsPage() {
                                             : showQuizAnswer &&
                                                 quizVerdict[index] &&
                                                 elem === quizAnswer[index]
-                                              ? "limgreen"
+                                              ? "limegreen"
                                               : user.darkMode
                                                 ? "#B153E0"
                                                 : "#B153E0",
@@ -865,6 +868,9 @@ export default function CourseDetailsPage() {
                                                 : user.darkMode
                                                   ? "#B153E0"
                                                   : "#B153E0",
+                                        },
+                                        "&.Mui-disabled": {
+                                          color: "red",
                                         },
                                       }}
                                     />
