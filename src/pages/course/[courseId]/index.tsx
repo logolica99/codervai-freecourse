@@ -789,6 +789,7 @@ export default function CourseDetailsPage() {
                     {activeModule?.data?.quiz?.map((quiz: any, index: any) => (
                       <div className="my-6" key={Math.random()}>
                         <div
+                        className="text-white"
                           dangerouslySetInnerHTML={{
                             __html: quiz.question,
                           }}

@@ -47,7 +47,7 @@ export default function Nav({}: Props) {
   const [isLogged, setIsLoggedIn] = useState(false);
   const [score, setScore] = useState(0);
   const [user, setUser] = useContext<any>(UserContext);
-  const [cookies, setCookie] = useCookies(["token"]);
+  const [cookies, setCookie,removeCookie] = useCookies(["token"]);
   useEffect(() => {
     setToken(cookies.token);
     if (isLoggedIn()) {

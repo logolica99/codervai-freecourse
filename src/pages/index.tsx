@@ -1560,22 +1560,25 @@ export default function CourseDetailsPage() {
                   কোর্সটি সম্পর্কে বিস্তারিত জানতে
                 </p>
                 <a
-                  href="tel:+4733378901"
+                  href="https://www.facebook.com/profile.php?id=61552652541126"
+                  target="_blank"
                   className="flex items-center bg-gray-400/30 dark:bg-gray-300/10 p-2 rounded-lg gap-3 hover:bg-gray-400/40 dark:hover:bg-gray-300/5 ease-in-out duration-150 text-sm text-paragraph dark:text-darkParagraph"
                 >
-                  <svg
-                    width="14"
-                    height="15"
-                    viewBox="0 0 14 15"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M13.6005 10.8429L10.538 9.53042C10.4072 9.47466 10.2618 9.46291 10.1237 9.49694C9.98562 9.53097 9.86232 9.60893 9.77238 9.71909L8.41613 11.3761C6.28762 10.3725 4.57467 8.65959 3.57109 6.53108L5.22813 5.17483C5.33851 5.08505 5.41663 4.96176 5.45067 4.82361C5.48472 4.68547 5.47283 4.53999 5.4168 4.40921L4.1043 1.34671C4.0428 1.20572 3.93405 1.09062 3.79678 1.02123C3.65951 0.951848 3.50233 0.932537 3.35234 0.966627L0.508594 1.62288C0.363992 1.65627 0.234977 1.73769 0.142607 1.85385C0.0502374 1.97 -3.33104e-05 2.11404 1.65599e-08 2.26245C1.65599e-08 9.27612 5.68477 14.9499 12.6875 14.9499C12.836 14.95 12.9801 14.8998 13.0963 14.8074C13.2125 14.715 13.2939 14.586 13.3273 14.4414L13.9836 11.5976C14.0175 11.4469 13.9977 11.2891 13.9278 11.1513C13.8579 11.0136 13.7422 10.9045 13.6005 10.8429Z"
-                      fill="#1CAB55"
-                    />
-                  </svg>
-                  ফোন করুন <span className="hidden lg:block">(16910)</span>
+                  <div className="">
+                    
+                 <svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="16" cy="16" r="14" fill="url(#paint0_linear_1630_2247)"/>
+<path d="M21.2137 20.2816L21.8356 16.3301H17.9452V13.767C17.9452 12.6857 18.4877 11.6311 20.2302 11.6311H22V8.26699C22 8.26699 20.3945 8 18.8603 8C15.6548 8 13.5617 9.89294 13.5617 13.3184V16.3301H10V20.2816H13.5617V29.8345C14.2767 29.944 15.0082 30 15.7534 30C16.4986 30 17.2302 29.944 17.9452 29.8345V20.2816H21.2137Z" fill="white"/>
+<defs>
+<linearGradient id="paint0_linear_1630_2247" x1="16" y1="2" x2="16" y2="29.917" gradientUnits="userSpaceOnUse">
+<stop stop-color="#18ACFE"/>
+<stop offset="1" stop-color="#0163E0"/>
+</linearGradient>
+</defs>
+</svg>
+                  </div>
+
+                 Facebook Page
                 </a>
               </div>
             </div>
