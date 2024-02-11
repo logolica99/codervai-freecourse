@@ -47,7 +47,7 @@ export default function Nav({}: Props) {
   const [isLogged, setIsLoggedIn] = useState(false);
   const [score, setScore] = useState(0);
   const [user, setUser] = useContext<any>(UserContext);
-  const [cookies, setCookie,removeCookie] = useCookies(["token"]);
+  const [cookies, setCookie, removeCookie] = useCookies(["token"]);
   useEffect(() => {
     setToken(cookies.token);
     if (isLoggedIn()) {
@@ -105,8 +105,15 @@ export default function Nav({}: Props) {
         <div className="w-[90%]  mx-auto py-4">
           <div className="flex justify-between items-center ">
             <div className="flex gap-10 items-center">
-              <Link href="/">
+              <Link href="/" className="hidden dark:block">
                 <img src="/logo.png" alt="" className="w-8 md:w-14 mr-8 " />
+              </Link>
+              <Link href="/" className="dark:hidden">
+                <img
+                  src="/logo_black.png"
+                  alt=""
+                  className="w-8 md:w-14 mr-8 "
+                />
               </Link>
               {isLogged && (
                 <Link
