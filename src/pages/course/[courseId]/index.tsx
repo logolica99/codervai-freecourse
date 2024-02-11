@@ -960,7 +960,7 @@ export default function CourseDetailsPage() {
             <div style={{ flex: 1 }} className="z-10 relative">
               <div className="text-heading dark:text-darkHeading">
                 <div
-                  className=" scrollbar-thumb-rounded-full scrollbar-track-rounded-full h-[70vh] overflow-y-scroll py-6 px-4 border rounded-lg border-gray-300/20  scrollbar-thin scrollbar-thumb-gray-300
+                  className=" scrollbar-thumb-rounded-full scrollbar-track-rounded-full h-[100vh] overflow-y-scroll py-6 px-4 border rounded-lg border-gray-300/20  scrollbar-thin scrollbar-thumb-gray-300
                scrollbar-rounded-[12px]
                  scrollbar-track-gray-600"
                 >
