@@ -202,6 +202,7 @@ export default function CourseDetailsPage() {
     } else {
       setUser({ ...user, loading: true });
       const token = localStorage.getItem("token");
+  
       axios
         .post(
           BACKEND_URL + "/user/payment/initiate/" + COURSE_ID,
@@ -298,7 +299,7 @@ export default function CourseDetailsPage() {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className=" w-[90vw]  text-darkHeading transform overflow-hidden rounded-2xl bg-[#0B060D]/60 dark:bg-[#0B060D]/30 bg-opacity-30  backdrop-blur-lg border border-gray-200/20 p-6 text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel className=" w-[90vw]  lg:w-[40vw]  text-darkHeading transform overflow-hidden rounded-2xl bg-[#0B060D]/60 dark:bg-[#0B060D]/30 bg-opacity-30  backdrop-blur-lg border border-gray-200/20 p-6 text-left align-middle shadow-xl transition-all">
                   <Dialog.Title
                     as="div"
                     className="text-lg font-medium leading-6 "
