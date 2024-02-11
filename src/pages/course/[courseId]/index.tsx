@@ -668,7 +668,7 @@ export default function CourseDetailsPage() {
                       Feedback:{" "}
                       {assignmentEvaluted.length > 0 &&
                         assignmentEvaluted[0]?.status === "EVALUATED" && (
-                          <span className={`text-white`}>
+                          <span className={`text-black dark:text-white`}>
                             {assignmentEvaluted[0] &&
                               assignmentEvaluted[0]?.evaluation?.feedback}
                           </span>
