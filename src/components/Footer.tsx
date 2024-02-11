@@ -76,13 +76,13 @@ export default function Footer({}: Props) {
 
           <div className="flex gap-20 text-lg text-darkParagraph flex-col lg:flex-row z-10">
             <div className="flex flex-col gap-4 ">
-              <Link href="/notifications" className="hover:text-white">
+              {/* <Link href="/notifications" className="hover:text-white">
                 নোটিফিকেশান
-              </Link>
-              <Link href="/live-class" className="hover:text-white">
+              </Link> */}
+              {/* <Link href="/live-class" className="hover:text-white">
                 লাইফ ক্লাস শিডিউল
-              </Link>
-              <Link href="/course-details/12" className="hover:text-white">
+              </Link> */}
+              <Link href="/" className="hover:text-white">
                 কোস কন্টেন্ট
               </Link>
               <a
