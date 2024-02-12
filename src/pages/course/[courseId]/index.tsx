@@ -621,7 +621,7 @@ export default function CourseDetailsPage() {
                       allowFullScreen
                     ></iframe>
                   )}
-          
+
                 {activeModule?.data?.category == "PDF" && (
                   <iframe
                     src={`https://docs.google.com/viewer?url=${activeModule?.data?.pdf_link}&embedded=true`}
@@ -654,6 +654,7 @@ export default function CourseDetailsPage() {
                         </span>
                       )}
                     </p>
+
                     <p className="text-lg  mb-2">
                       Verdict:{" "}
                       {assignmentEvaluted.length > 0 &&

@@ -196,7 +196,10 @@ export default function Footer({}: Props) {
           <img alt="ssl-commerz" src="/SSL-commerz.png" />
         </div>
         <div className="mt-10 flex gap-8 justify-center items-center  pb-10  border-b  border-gray-300/40">
-          <a href="https://www.facebook.com/groups/coder.vai.2023" target="__blank">
+          <a
+            href="https://www.facebook.com/groups/coder.vai.2023"
+            target="__blank"
+          >
             <svg
               className="w-[32px]"
               viewBox="0 0 32 32"
@@ -287,7 +290,7 @@ export default function Footer({}: Props) {
           </a>
         </div>
         <div className="flex justify-center my-10">
-          <p className="text-white mt-4 ">Copyright © Codervai2023</p>
+          <p className="text-white mt-4 ">Copyright © Codervai2024</p>
         </div>
       </div>
     </div>
