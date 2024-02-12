@@ -194,6 +194,7 @@ export default function CourseDetailsPage() {
         },
       )
       .then((res) => {
+        
         axios
           .get(BACKEND_URL + "/user/course/getfull/" + COURSE_ID, {
             headers: {
@@ -209,7 +210,7 @@ export default function CourseDetailsPage() {
               );
             }
 
-            setUser({ ...user, loading: false });
+            setUser({ ...user, loading: false,scoreTrigger:!user.scoreTrigger });
           })
           .catch((err) => {
             setUser({ ...user, loading: false });

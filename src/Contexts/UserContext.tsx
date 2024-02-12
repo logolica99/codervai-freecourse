@@ -7,7 +7,8 @@ export const UserContextProvider = (props: any) => {
     isLoggedIn: false,
     loading: false,
     openCompiler:false,
-    darkMode:false
+    darkMode:false,
+    scoreTrigger:true,
   });
 
   return (

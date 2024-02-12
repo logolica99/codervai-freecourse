@@ -76,6 +76,10 @@ export default function Nav({}: Props) {
     }
   }, []);
 
+  useEffect(() => {
+    fetchScore();
+  }, [user.scoreTrigger]);
+
   const fetchScore = () => {
     const token = localStorage.getItem("token");
     axios
