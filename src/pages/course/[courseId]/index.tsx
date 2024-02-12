@@ -185,7 +185,7 @@ export default function CourseDetailsPage() {
     const token = localStorage.getItem("token");
     axios
       .post(
-        `${BACKEND_URL}/user/module/addProgress/${module_id}?points=${score}`,
+        `${BACKEND_URL}/user/module/addProgress/${module_id}?points=${score}&type=${activeModule?.data?.category}`,
         {},
         {
           headers: {
@@ -194,7 +194,6 @@ export default function CourseDetailsPage() {
         },
       )
       .then((res) => {
-        
         axios
           .get(BACKEND_URL + "/user/course/getfull/" + COURSE_ID, {
             headers: {
@@ -210,7 +209,11 @@ export default function CourseDetailsPage() {
               );
             }
 
-            setUser({ ...user, loading: false,scoreTrigger:!user.scoreTrigger });
+            setUser({
+              ...user,
+              loading: false,
+              scoreTrigger: !user.scoreTrigger,
+            });
           })
           .catch((err) => {
             setUser({ ...user, loading: false });
@@ -242,7 +245,6 @@ export default function CourseDetailsPage() {
     setShowQuizAnswer(true);
     const real_score = (accepted_answer / total_quiz) * activeModule.score;
     setQuizScore(real_score);
-   
 
     setQuizVerdict(verdict);
     submitProgress(activeModule.id, real_score);
