@@ -51,6 +51,7 @@ export default function CourseDetailsPage() {
   const [assignmentEvaluted, setAssignmentEvaluted] = useState<any>([]);
 
   const [activeModule, setActiveModule] = useState<any>({});
+  const [quizScore, setQuizScore] = useState<any>(0);
 
   const [cfHandle, setCfHandle] = useState<any>("");
   const router = useRouter();
@@ -113,7 +114,7 @@ export default function CourseDetailsPage() {
       )
       .then((res) => {
         if (res.data.data.solved) {
-          submitProgress(activeModule?.id);
+          submitProgress(activeModule?.id, activeModule.score);
         } else {
           toast.error("You have not solved this problem yet!");
         }
@@ -137,7 +138,10 @@ export default function CourseDetailsPage() {
       .then((res) => {
         setCourseData(res.data);
         if (res.data.maxModuleSerialProgress === 0) {
-          submitProgress(res.data.chapters[0].modules[0].id);
+          submitProgress(
+            res.data.chapters[0].modules[0].id,
+            res.data.chapters[0].modules[0].score,
+          );
         }
         res.data.chapters.forEach((chapter: any) => {
           chapter.modules.forEach((module: any) => {
@@ -177,11 +181,11 @@ export default function CourseDetailsPage() {
       });
   };
 
-  const submitProgress = (module_id: any) => {
+  const submitProgress = (module_id: any, score: any) => {
     const token = localStorage.getItem("token");
     axios
       .post(
-        `${BACKEND_URL}/user/module/addProgress/${module_id}`,
+        `${BACKEND_URL}/user/module/addProgress/${module_id}?points=${score}`,
         {},
         {
           headers: {
@@ -199,7 +203,10 @@ export default function CourseDetailsPage() {
           .then((res) => {
             setCourseData(res.data);
             if (res.data.maxModuleSerialProgress === 0) {
-              submitProgress(res.data.chapters[0].modules[0].id);
+              submitProgress(
+                res.data.chapters[0].modules[0].id,
+                res.data.chapters[0].modules[0].score,
+              );
             }
 
             setUser({ ...user, loading: false });
@@ -216,6 +223,8 @@ export default function CourseDetailsPage() {
   const submitQuiz = () => {
     let quizes = activeModule.data.quiz;
     let verdict: any = [];
+    const total_quiz = quizes.length;
+    let accepted_answer = 0;
     quizes.forEach((quiz: any, index: any) => {
       const decrypted = decryptString(
         quiz.answer,
@@ -223,15 +232,19 @@ export default function CourseDetailsPage() {
       );
       if (decrypted === quizAnswer[index]) {
         verdict.push(true);
+        accepted_answer += 1;
         // submitProgress(activeModule.id);
       } else {
         verdict.push(false);
       }
     });
     setShowQuizAnswer(true);
+    const real_score = (accepted_answer / total_quiz) * activeModule.score;
+    setQuizScore(real_score);
+   
 
     setQuizVerdict(verdict);
-    submitProgress(activeModule.id);
+    submitProgress(activeModule.id, real_score);
   };
 
   useEffect(() => {
@@ -261,7 +274,7 @@ export default function CourseDetailsPage() {
         .then(() => {
           setUser({ ...user, loading: false });
           toast.success("Assignment Submitted Successfully");
-          submitProgress(activeModule.id);
+          submitProgress(activeModule.id, activeModule.score);
         })
         .catch((err) => {
           setUser({ ...user, loading: false });
@@ -283,7 +296,7 @@ export default function CourseDetailsPage() {
         .then(() => {
           setUser({ ...user, loading: false });
           toast.success("Assignment Submitted Successfully");
-          submitProgress(activeModule.id);
+          submitProgress(activeModule.id, activeModule.score);
         })
         .catch((err) => {
           setUser({ ...user, loading: false });
@@ -815,6 +828,13 @@ export default function CourseDetailsPage() {
 
                 {activeModule?.data?.category === "QUIZ" && (
                   <div>
+                    {showQuizAnswer && (
+                      <div>
+                        <p className="font-bold text-3xl">
+                          {quizScore}/{activeModule.score}
+                        </p>
+                      </div>
+                    )}
                     {activeModule?.data?.quiz?.map((quiz: any, index: any) => (
                       <div
                         className="my-6 bg-[#B153E0]/10 border border-[#B153E0] dark:bg-gray-300/10  rounded p-6"
@@ -1160,7 +1180,7 @@ export default function CourseDetailsPage() {
                                     module.serial
                                 ) {
                                   setActiveModule(module);
-                                  submitProgress(module.id);
+                                  submitProgress(module.id, module.score);
                                 }
                                 if (
                                   module.data.category === "QUIZ" &&
@@ -1176,7 +1196,7 @@ export default function CourseDetailsPage() {
                                     module.serial
                                 ) {
                                   setActiveModule(module);
-                                  submitProgress(module.id);
+                                  submitProgress(module.id, module.score);
                                 }
                               }
                             }}
