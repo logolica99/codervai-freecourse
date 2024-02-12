@@ -396,13 +396,13 @@ export default function Nav({}: Props) {
             {!isLogged ? (
               <div className="flex flex-col gap-8 items-center mt-8">
                 <a
-                  href="https://www.codervai.com/auth/login"
+                  href="https://www.codervai.com/auth/login?redirect=py.codervai.com"
                   className="  hover:text-black dark:hover:text-white ease-in-out duration-150 text-sm md:text-base"
                 >
                   লগ ইন
                 </a>
                 <a
-                  href="https://www.codervai.com/auth/register"
+                  href="https://www.codervai.com/auth/register?redirect=py.codervai.com"
                   className=" md:px-8 px-4 py-2 rounded-lg bg-white bg-opacity-30 backdrop-blur-xl hover:text-black dark:hover:text-white ease-in-out duration-150 text-sm md:text-base"
                 >
                   শুরু করুন
