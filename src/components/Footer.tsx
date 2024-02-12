@@ -5,7 +5,7 @@ type Props = {};
 
 export default function Footer({}: Props) {
   return (
-    <div className="bg-[#0B060D] z-30 relative ">
+    <div className="bg-[#0B060D] z-30 relative overflow-hidden">
       <div className="w-[90%] lg:w-[80%] mx-auto  text-darkHeading py-20 ">
         <div className="flex flex-col lg:flex-row justify-between lg:items-center">
           <svg
@@ -13,7 +13,7 @@ export default function Footer({}: Props) {
             viewBox="0 0 1161 326"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            className="absolute top-0 left-0 h-full z-0"
+            className=" absolute top-0 left-0 h-full z-0"
           >
             <g filter="url(#filter0_f_255_9837)">
               <ellipse
