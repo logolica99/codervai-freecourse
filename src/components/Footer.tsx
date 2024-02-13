@@ -191,9 +191,8 @@ export default function Footer({}: Props) {
         </div>
 
         <div className="mt-10">
-          <p>Pay with</p>
-          <img alt="ssl-logo" src="/ssl-logo.png" />
-          <img alt="ssl-commerz" src="/SSL-commerz.png" />
+
+          <img alt="ssl-commerz" src="/SSLCommerz-Pay-With-logo-All-Size-03.png" />
         </div>
         <div className="mt-10 flex gap-8 justify-center items-center  pb-10  border-b  border-gray-300/40">
           <a
