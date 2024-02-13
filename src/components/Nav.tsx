@@ -248,13 +248,14 @@ export default function Nav({}: Props) {
                   </Link>
                 )} */}
 
-                <Link
-                  href={"/profile/my-courses"}
+                <div
+                  // href={"/profile/my-courses"}
+                  
                   className=" hidden lg:block  hover:text-black dark:hover:text-white ease-in-out duration-150 text-sm md:text-base"
                 >
                   {" "}
                   {token && jwtDecode<any>(token).name}
-                </Link>
+                </div>
                 <div className="hidden lg:flex items-center gap-3 dark:bg-white/25 bg-black/50 px-3 py-1 rounded ">
                   <svg
                     width="20px"
