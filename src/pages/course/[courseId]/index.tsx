@@ -98,6 +98,30 @@ export default function CourseDetailsPage() {
         setUser({ ...user, loading: false });
       });
   };
+  const requestCertificate = () => {
+    setUser({ ...user, loading: true });
+    const token = localStorage.getItem("token");
+    axios
+      .post(
+        BACKEND_URL + "/user/course/requestCertificate/" + COURSE_ID,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      )
+      .then((res) => {
+        toast.success("Applied for certification");
+        fetchCourse();
+        setUser({ ...user, loading: false });
+      })
+      .catch((err) => {
+        toast.error("Application for certificate failed!");
+
+        setUser({ ...user, loading: false });
+      });
+  };
 
   const checkCFStatus = () => {
     const token = localStorage.getItem("token");
@@ -581,6 +605,46 @@ export default function CourseDetailsPage() {
               <h2 className="text-2xl lg:text-4xl font-semibold">
                 {courseData.title}
               </h2>
+              <div>
+                <div
+                  className={`mt-10 ${courseData.chapters && courseData.maxModuleSerialProgress != courseData.chapters[courseData.chapters.length - 1].modules[courseData.chapters[courseData.chapters.length - 1].modules.length - 1].serial && "hidden"}`}
+                >
+                  <button
+                    onClick={requestCertificate}
+                    className={`py-2 px-8 bg-[#532e62] hover:opacity-75 ease-in-out duration-150 focus:ring ring-gray-300/80  rounded font-semibold text-white text-lg 
+                    ${courseData.certificate && courseData.certificate.id && "hidden"}`}
+                  >
+                    Request for Certificate
+                  </button>
+                  <div
+                    className={`flex items-center gap-3 ${courseData.certificate && JSON.stringify(courseData.certificate) === "{}" && "hidden"}`}
+                  >
+                    <h2 className="font-bold text-lg">Certificate Status:</h2>
+
+                    {courseData.certificate?.issue_timestamp == null ? (
+                      <p className="font-bold  text-yellow text-lg">
+                        Not accepted by admin yet!
+                      </p>
+                    ) : (
+                      <p className="font-bold  text-green-600 text-lg">
+                        {" "}
+                        ACCEPTED
+                      </p>
+                    )}
+                  </div>
+                  <div className="my-4">
+                    {courseData?.certificate?.certificate_link && (
+                      <a
+                        href={courseData.certificate.certificate_link}
+                        target="_blank"
+                        className="py-2 px-8 bg-[#532e62] hover:opacity-75 ease-in-out duration-150 focus:ring ring-gray-300/80  rounded font-semibold text-white text-lg "
+                      >
+                        Download Certificate
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </div>
               {!courseData.isTaken && (
                 <div className="flex gap-8 items-center pb-6 border-b border-gray-400/50 dark:border-gray-300/10 relative ">
                   <div className="flex gap-3 mt-6 items-center bg-[#FFF1E9]/20 px-3 py-2 rounded-xl">
